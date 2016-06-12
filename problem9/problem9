@@ -1,0 +1,20 @@
+using PyPlot;
+k=1000;
+N=500:500:10000;
+ms=zeros(length(N));
+for i in eachindex(N)
+  m=0;
+  for t in 1:k
+    Urn=zeros(N[i]);
+    for j in 1:N[i]
+      Urn[rand(1:length(Urn))]+=1;
+    end;
+    m+=maximum(Urn)
+  end;
+  ms[i]=m/k;
+end;
+plot(N, ms, "ro");
+xlabel("Tries");
+ylabel("MaxLoad");
+title("Maximal load in urns");
+grid("on");

@@ -1,0 +1,24 @@
+using PyPlot;
+k=100;
+N=[10:10:1000];
+func=zeros(length(N));
+
+for n in eachindex(N)
+  avr=0;
+  for i in 1:k
+    tic()
+    sort(randperm(N[n]), alg=MergeSort);
+    avr=toq();
+  end;
+  func[n]=avr/k;
+end;
+y=zeros(length(N));
+for i in eachindex(N)
+  y[i]=(1/1000000000)*N[i]*log(N[i]);
+end;
+plot(N, func,"bo");
+plot(N, y,"r-");
+xlabel("Elements");
+ylabel("Time [s]");
+title("Merge Sort Analysis");
+grid("on");

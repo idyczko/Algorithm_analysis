@@ -1,0 +1,18 @@
+using PyPlot;
+p=0.5;
+tries = 10000;
+N=zeros(tries);
+for i in eachindex(N)
+    N[i]=ceil(log(rand())/log(1-p));
+end;
+occurences = hist(N);
+probability = zeros(length(N));
+for i in eachindex(occurences[2])
+  probability[i] = occurences[2][i]/tries;
+end;
+plot(1:length(probability), probability,"bo");
+xlabel("Try");
+ylabel("Probability of success");
+title("Geometric distribution");
+grid("on");
+axis([1,10,0,1]);

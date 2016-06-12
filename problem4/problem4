@@ -1,0 +1,34 @@
+using PyPlot;
+k=32;
+N=[10:100:5000];
+func = zeros(length(N));
+for n in eachindex(N)
+  avr=0;
+  for i in 1:k
+    sensors=sort(rand(N[n]));
+    for l in eachindex(sensors)
+      avr+=abs(sensors[l]-(l/N[n]-1/(2*N[n])));
+    end;
+  end;
+  func[n]=avr/k;
+end;
+x=zeros(length(N));
+for i in eachindex(N)
+  x[i]=0.31*sqrt(N[i]);
+end;
+y=zeros(length(N));
+for i in eachindex(N)
+  y[i]=0.1*sqrt(N[i]);
+end;
+z=zeros(length(N));
+for i in eachindex(N)
+  z[i]=0.5*sqrt(N[i]);
+end;
+plot(N, func,"bo");
+plot(N, x,"g-")
+plot(N, y,"r-")
+plot(N, z,"r-")
+xlabel("Quantity of sensors");
+ylabel("Expected value");
+title("Uniformly distributed sensors");
+grid("on");

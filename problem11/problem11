@@ -1,0 +1,27 @@
+using PyPlot;
+k=100;
+N=[10:100:1000];
+func =zeros(length(N))
+for n in eachindex(N)
+  avr=0;
+  for i in 1:k
+    bins=zeros(N[n]);
+    count=0;
+    while minimum(bins)<1
+      bins[rand(1:length(bins))]+=1;
+      count+=1;
+    end;
+    avr+=count;
+  end;
+  func[n]=avr/k;
+end;
+y=zeros(length(N));
+for i in eachindex(N)
+  y[i]=N[i]*log(N[i]);
+end;
+plot(N, func,"bo");
+plot(N,y,"r-");
+xlabel("Timespan");
+ylabel("Quantity of events");
+title("Poisson distribution");
+grid("on");

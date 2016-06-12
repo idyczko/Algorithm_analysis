@@ -1,0 +1,24 @@
+using PyPlot;
+tries=10000;
+function rancp()
+  t=2*pi*rand();
+  u=rand()+rand();
+  r=0;
+  if u>1
+    r=-u
+  else
+    r=u
+  return [r*cos(t),r*sin(t)];
+  end;
+end;
+r=1;
+N = zeros(tries,2);
+for i in 1:tries
+  N[i,:]=rancp();
+end;
+plot(N[:,1],N[:,2],"ro")
+xlabel("x");
+ylabel("y");
+title("Points in circle");
+grid("on");
+axis([-1,1,-1,1]);

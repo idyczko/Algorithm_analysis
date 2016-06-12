@@ -1,0 +1,38 @@
+using PyPlot;
+k=1000;
+N=5:5:100;
+function toss()
+  return rand()>0.5?1:0;
+end;
+
+function play(n)
+  count=0;
+  x=n;
+  while x>1
+    tab=zeros(x);
+    while maximum(tab)<1
+      for i in eachindex(tab)
+        tab[i]=toss();
+      end;
+    end;
+    x=hist(tab)[2][1];
+    count+=1;
+  end;
+  return count;
+end;
+
+depth=zeros(length(N));
+for n in eachindex(N)
+  avr=0;
+  for i in 1:k
+    avr+=play(N[n]);
+  end;
+  depth[n]=avr/k;
+end;
+x=minimum(N):maximum(N);
+plot(N, depth,"ro");
+plot(x,log2(x),"g-");
+xlabel("Players");
+ylabel("Rounds");
+title("How to select a loser");
+grid("on");

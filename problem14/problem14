@@ -1,0 +1,35 @@
+using PyPlot;
+k=100;
+M=[10:10:100];
+N=100;
+func = zeros(length(M));
+for m in eachindex(M)
+  avr=0;
+  for p in 1:k
+    bins = zeros(N)
+    for i in 1:M[m]
+      bin=rand(1:N);
+      while bins[bin]>=(i/N+1)
+        bin=rand(1:N);
+      end;
+      bins[bin]+=1;
+    end;
+    for i in eachindex(bins)
+      if bins[i]>0
+        avr+=1;
+      end;
+    end;
+  end;
+  func[m]=avr/k;
+  end;
+x=[minimum(M):maximum(M)];
+y=zeros(length(x));
+for i in eachindex(x)
+  y[i]=x[i]+(x[i]^(3/4))*(N^(1/4));
+end;
+plot(M,func,"bo");
+plot(x,y,"r.");
+xlabel("Balls");
+ylabel("Allocating time");
+title("Balls-Into-Bins");
+grid("on");

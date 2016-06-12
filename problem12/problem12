@@ -1,0 +1,49 @@
+using PyPlot;
+function my_range(sensors,i)
+  if i==1
+    return max(sensors[i], sensors[i+1]-sensors[i]);
+  elseif i==length(sensors)
+    return max(sensors[i]-sensors[i-1], 1-sensors[i]);
+  else
+    return max(sensors[i]-sensors[i-1],sensors[i+1]-sensors[i]);
+  end;
+end;
+
+k=100;
+N=[10:10:100];
+func=zeros(length(N));
+for n in eachindex(N)
+  avr=0;
+  for j in 1:k
+    sensors=sort(rand(N[n]));
+    maxinter=0;
+    for i in eachindex(sensors)
+      r=my_range(sensors,i);
+      interference=-1;
+      for s in sensors
+        if s<=sensors[i]+r && s>=sensors[i]-r
+          interference+=1;
+        end;
+      end;
+      maxinter=(interference>maxinter)?interference:maxinter;
+    end;
+    avr+=maxinter;
+  end;
+  func[n]=avr/k;
+end;
+
+y=zeros(length(N))
+for i in eachindex(N)
+  y[i]=log(log(N[i]));
+end;
+z=zeros(length(N))
+for i in eachindex(N)
+  z[i]=5*log(N[i])^(2/3);
+end;
+plot(N, func,"bo");
+plot(N,y,"r-")
+plot(N,z,"r-")
+xlabel("Sensors");
+ylabel("Interferences");
+title("Interferences between uniformly distributed sensors");
+grid("on");

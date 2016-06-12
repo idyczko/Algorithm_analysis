@@ -1,0 +1,30 @@
+using PyPlot;
+k=100;
+N=[10:10:1000];
+func = zeros(length(N));
+
+function calc(perm)
+  sum=0;
+  for i in eachindex(perm)
+    sum+=abs(perm[i]-i);
+  end;
+  return sum;
+end;
+
+for n in eachindex(N)
+  avr=0;
+  for i in 1:k
+    avr += calc(randperm(N[n]));
+  end;
+  func[n]=avr/k;
+end;
+y=zeros(length(N));
+for i in eachindex(N)
+  y[i]=N[i]^2/3;
+end;
+plot(N, func,"bo");
+plot(N, y,"ro")
+xlabel("Elements");
+ylabel("Expected value");
+title("Permutations to sort");
+grid("on");
