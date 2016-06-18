@@ -40,6 +40,7 @@ z=zeros(length(N))
 for i in eachindex(N)
   z[i]=5*log(N[i])^(2/3);
 end;
+figure();
 plot(N, func,"bo");
 plot(N,y,"r-")
 plot(N,z,"r-")

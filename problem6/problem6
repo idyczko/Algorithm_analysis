@@ -16,6 +16,7 @@ y=zeros(length(N));
 for i in eachindex(N)
   y[i]=(1/1000000000)*N[i]*log(N[i]);
 end;
+figure();
 plot(N, func,"bo");
 plot(N, y,"r-");
 xlabel("Elements");

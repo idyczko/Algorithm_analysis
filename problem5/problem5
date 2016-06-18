@@ -16,6 +16,7 @@ N = zeros(tries,2);
 for i in 1:tries
   N[i,:]=rancp();
 end;
+figure();
 plot(N[:,1],N[:,2],"ro")
 xlabel("x");
 ylabel("y");

@@ -24,6 +24,7 @@ z=zeros(length(N));
 for i in eachindex(N)
   z[i]=0.5*sqrt(N[i]);
 end;
+figure();
 plot(N, func,"bo");
 plot(N, x,"g-")
 plot(N, y,"r-")

@@ -27,8 +27,9 @@ y=zeros(length(x));
 for i in eachindex(x)
   y[i]=x[i]+(x[i]^(3/4))*(N^(1/4));
 end;
+figure();
 plot(M,func,"bo");
-plot(x,y,"r.");
+plot(x,y,"r-");
 xlabel("Balls");
 ylabel("Allocating time");
 title("Balls-Into-Bins");

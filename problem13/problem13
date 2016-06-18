@@ -30,6 +30,7 @@ for n in eachindex(N)
   depth[n]=avr/k;
 end;
 x=minimum(N):maximum(N);
+figure();
 plot(N, depth,"ro");
 plot(x,log2(x),"g-");
 xlabel("Players");

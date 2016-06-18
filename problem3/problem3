@@ -22,8 +22,9 @@ y=zeros(length(N));
 for i in eachindex(N)
   y[i]=N[i]^2/3;
 end;
+figure();
 plot(N, func,"bo");
-plot(N, y,"ro")
+plot(N, y,"r-")
 xlabel("Elements");
 ylabel("Expected value");
 title("Permutations to sort");

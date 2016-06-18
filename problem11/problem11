@@ -19,9 +19,10 @@ y=zeros(length(N));
 for i in eachindex(N)
   y[i]=N[i]*log(N[i]);
 end;
+figure();
 plot(N, func,"bo");
 plot(N,y,"r-");
-xlabel("Timespan");
-ylabel("Quantity of events");
-title("Poisson distribution");
+xlabel("Coupons");
+ylabel("Rounds");
+title("Coupon collector's problem");
 grid("on");
